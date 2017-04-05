@@ -17,7 +17,7 @@ class AdminController extends Controller {
 
     public function displayAdminPage(Request $request) {
         if (!$this->isLoggedIn()) {
-            return redirect(route('login'))->with('error', 'Please login to access your dashboard.');
+            return redirect(route('login'))->with('error', '请登录进入用户中心。');
         }
 
         $username = session('username');
@@ -26,7 +26,7 @@ class AdminController extends Controller {
         $user = UserHelper::getUserByUsername($username);
 
         if (!$user) {
-            return redirect(route('index'))->with('error', 'Invalid or disabled account.');
+            return redirect(route('index'))->with('error', '账号不存在或已禁用。');
         }
 
         return view('admin', [
@@ -51,7 +51,7 @@ class AdminController extends Controller {
 
         if (UserHelper::checkCredentials($username, $old_password) == false) {
             // Invalid credentials
-            return redirect('admin')->with('error', 'Current password invalid. Try again.');
+            return redirect('admin')->with('error', '原始密码不正确，请重试。');
         }
         else {
             // Credentials are correct
@@ -59,7 +59,7 @@ class AdminController extends Controller {
             $user->password = Hash::make($new_password);
             $user->save();
 
-            $request->session()->flash('success', "Password changed successfully.");
+            $request->session()->flash('success', "密码修改成功！");
             return redirect(route('admin'));
         }
     }

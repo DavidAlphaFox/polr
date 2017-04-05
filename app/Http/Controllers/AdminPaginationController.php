@@ -34,11 +34,11 @@ class AdminPaginationController extends Controller {
                 }
 
                 if ($user->active) {
-                    $active_text = 'Active';
+                    $active_text = '启用';
                     $btn_color_class = ' btn-success';
                 }
                 else {
-                    $active_text = 'Inactive';
+                    $active_text = '未启用';
                     $btn_color_class = ' btn-danger';
                 }
 
@@ -80,7 +80,7 @@ class AdminPaginationController extends Controller {
                     $btn_class = 'disabled';
                 }
                 return '<a ng-click="deleteUser($event, \''. $user->id .'\')" class="btn btn-sm btn-danger ' . $btn_class . '">
-                    Delete
+                    删除
                 </a>';
             })
             ->escapeColumns(['username', 'email'])
@@ -95,11 +95,11 @@ class AdminPaginationController extends Controller {
             ->addColumn('disable', function ($link) {
                 // Add "Disable/Enable" action buttons
                 $btn_class = 'btn-danger';
-                $btn_text = 'Disable';
+                $btn_text = '禁用';
 
                 if ($link->is_disabled) {
                     $btn_class = 'btn-success';
-                    $btn_text = 'Enable';
+                    $btn_text = '启用';
                 }
 
                 return '<a ng-click="toggleLink($event, \'' . e($link->short_url) . '\')" class="btn btn-sm ' . $btn_class . '">
@@ -110,7 +110,7 @@ class AdminPaginationController extends Controller {
                 // Add "Delete" action button
                 return '<a ng-click="deleteLink($event, \'' . e($link->short_url)  . '\')"
                     class="btn btn-sm btn-warning delete-link">
-                    Delete
+                    删除
                 </a>';
             })
             ->editColumn('clicks', function ($link) {

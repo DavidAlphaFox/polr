@@ -48,13 +48,13 @@ class UserController extends Controller {
             return redirect()->route('index');
         }
         else {
-            return redirect('login')->with('error', 'Invalid password or inactivated account. Try again.');
+            return redirect('login')->with('error', '请输入正确的用户名和密码！');
         }
     }
 
     public function performSignup(Request $request) {
         if (env('POLR_ALLOW_ACCT_CREATION') == false) {
-            return redirect(route('index'))->with('error', 'Sorry, but registration is disabled.');
+            return redirect(route('index'))->with('error', '暂停注册。');
         }
 
         // Validate signup form data
@@ -73,7 +73,7 @@ class UserController extends Controller {
             $permitted_email_domains = explode(',', env('SETTING_ALLOWED_EMAIL_DOMAINS'));
 
             if (!in_array($email_domain, $permitted_email_domains)) {
-                return redirect(route('signup'))->with('error', 'Sorry, your email\'s domain is not permitted to create new accounts.');
+                return redirect(route('signup'))->with('error', '不允许使用这类邮箱后缀，建议使用QQ邮箱。');
             }
         }
 
@@ -84,7 +84,7 @@ class UserController extends Controller {
 
         if ($user_exists || $email_exists) {
             // if user or email email
-            return redirect(route('signup'))->with('error', 'Sorry, your email or username already exists. Try again.');
+            return redirect(route('signup'))->with('error', '您的邮箱或者用户名已注册。');
         }
 
         $acct_activation_needed = env('POLR_ACCT_ACTIVATION');
@@ -92,11 +92,11 @@ class UserController extends Controller {
         if ($acct_activation_needed == false) {
             // if no activation is necessary
             $active = 1;
-            $response = redirect(route('login'))->with('success', 'Thanks for signing up! You may now log in.');
+            $response = redirect(route('login'))->with('success', '感谢注册！现在就可登录使用！');
         }
         else {
             // email activation is necessary
-            $response = redirect(route('login'))->with('success', 'Thanks for signing up! Please confirm your email to continue.');
+            $response = redirect(route('login'))->with('success', '感谢注册！请点击邮箱中的链接认证邮箱！');
             $active = 0;
         }
 
@@ -126,7 +126,7 @@ class UserController extends Controller {
 
     public function performSendPasswordResetCode(Request $request) {
         if (!env('SETTING_PASSWORD_RECOV')) {
-            return redirect(route('index'))->with('error', 'Password recovery is disabled.');
+            return redirect(route('index'))->with('error', '重置密码功能已关闭！请联系管理员。');
         }
 
         $email = $request->input('email');
@@ -134,7 +134,7 @@ class UserController extends Controller {
         $user = UserHelper::getUserByEmail($email);
 
         if (!$user) {
-            return redirect(route('lost_password'))->with('error', 'Email is not associated with a user.');
+            return redirect(route('lost_password'))->with('error', 'Email不符。');
         }
 
         $recovery_key = UserHelper::resetRecoveryKey($user->username);
@@ -147,7 +147,7 @@ class UserController extends Controller {
             $m->to($user->email, $user->username)->subject(env('APP_NAME') . ' Password Reset');
         });
 
-        return redirect(route('index'))->with('success', 'Password reset email sent. Check your inbox for details.');
+        return redirect(route('index'))->with('success', '邮件已发送，请查收！如果没有收到，请检查垃圾邮件。');
     }
 
     public function performActivation(Request $request, $username, $recovery_key) {
@@ -160,10 +160,10 @@ class UserController extends Controller {
             $user->save();
 
             UserHelper::resetRecoveryKey($username);
-            return redirect(route('login'))->with('success', 'Account activated. You may now login.');
+            return redirect(route('login'))->with('success', '账号已激活！请登录使用！');
         }
         else {
-            return redirect(route('index'))->with('error', 'Username or activation key incorrect.');
+            return redirect(route('index'))->with('error', '用户名或者重置链接出错，请重试。');
         }
     }
 
@@ -182,10 +182,10 @@ class UserController extends Controller {
             $user->save();
 
             UserHelper::resetRecoveryKey($username);
-            return redirect(route('login'))->with('success', 'Password reset. You may now login.');
+            return redirect(route('login'))->with('success', '密码已重置，请登录使用。');
         }
         else {
-            return redirect(route('index'))->with('error', 'Username or reset key incorrect.');
+            return redirect(route('index'))->with('error', '用户名或者重置链接出错，请重试。');
         }
 
     }

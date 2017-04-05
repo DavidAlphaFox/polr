@@ -64,7 +64,7 @@ class LinkController extends Controller {
             }
 
             return view('error', [
-                'message' => 'Sorry, but this link has been disabled by an administrator.'
+                'message' => '该链接已被管理员禁用。'
             ]);
         }
 

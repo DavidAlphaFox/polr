@@ -20,7 +20,7 @@ class ApiMiddleware {
                 $username = 'ANONIP-' . $request->ip();
             }
             else {
-                throw new ApiException('AUTH_ERROR', 'Authentication token required.', 401, $response_type);
+                throw new ApiException('AUTH_ERROR', '需要验证', 401, $response_type);
             }
             $user = (object) [
                 'username' => $username
@@ -33,7 +33,7 @@ class ApiMiddleware {
                 ->first();
 
             if (!$user) {
-                throw new ApiException('AUTH_ERROR', 'Authentication token required.', 401, $response_type);
+                throw new ApiException('AUTH_ERROR', '需要验证', 401, $response_type);
             }
             $username = $user->username;
         }

@@ -146,11 +146,11 @@ polr.controller('AdminCtrl', function($scope, $compile) {
             'user_email': user_email,
             'user_role': user_role,
         }, function(result) {
-            toastr.success("User " + username + " successfully created.", "Success");
+            toastr.success("" + username + " 已成功创建！", "Success");
             $('#new-user-form').clearForm();
             $scope.datatables['admin_users_table'].ajax.reload();
         }, function () {
-            toastr.error("An error occured while creating the user.", "Error");
+            toastr.error("失败！请重试！", "Error");
         });
     }
 
@@ -161,7 +161,7 @@ polr.controller('AdminCtrl', function($scope, $compile) {
         apiCall('admin/delete_user', {
             'user_id': user_id,
         }, function(new_status) {
-            $scope.hideRow(el, 'User successfully deleted.');
+            $scope.hideRow(el, '用户已删除。');
         });
     };
 
@@ -170,7 +170,7 @@ polr.controller('AdminCtrl', function($scope, $compile) {
             'user_id': user_id,
             'role': role,
         }, function(result) {
-            toastr.success("User role successfully changed.", "Success");
+            toastr.success("成功修改权限组。", "Success");
         });
     };
 
@@ -217,7 +217,7 @@ polr.controller('AdminCtrl', function($scope, $compile) {
             'user_id': user_id,
             'new_quota': parseInt(new_quota)
         }, function(next_action) {
-            toastr.success("Quota successfully changed.", "Success");
+            toastr.success("Quota 已修改。", "Success");
         });
     };
 
@@ -253,7 +253,7 @@ polr.controller('AdminCtrl', function($scope, $compile) {
         apiCall('admin/delete_link', {
             'link_ending': link_ending,
         }, function(new_status) {
-            $scope.hideRow(el, 'Link successfully deleted.');
+            $scope.hideRow(el, '链接已删除');
         });
     };
 
@@ -265,8 +265,8 @@ polr.controller('AdminCtrl', function($scope, $compile) {
         apiCall('admin/toggle_link', {
             'link_ending': link_ending,
         }, function(next_action) {
-            toastr.success(curr_action + " was successful.", "Success");
-            if (next_action == 'Disable') {
+            toastr.success(curr_action + " 成功", "Success");
+            if (next_action == '禁用') {
                 el.removeClass('btn-success');
                 el.addClass('btn-danger');
             } else {

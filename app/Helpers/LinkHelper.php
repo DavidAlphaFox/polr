@@ -11,7 +11,8 @@ class LinkHelper {
          * @return boolean
          */
         $shortener_domains = [
-            'polr.me',
+            'tk.ci',
+			'polr.me',
             'bit.ly',
             'is.gd',
             'tiny.cc',

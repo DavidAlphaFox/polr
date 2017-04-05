@@ -10,15 +10,15 @@
 @section('content')
 <div ng-controller="StatsCtrl" class="ng-root">
     <div class="stats-header">
-        <h3>Stats</h3>
+        <h3>状态</h3>
         <p>
-            <b>Short Link: </b>
+            <b>短链接: </b>
             <a target="_blank" href="{{ env('APP_PROTOCOL') }}/{{ env('APP_ADDRESS') }}/{{ $link->short_url }}">
                 {{ env('APP_ADDRESS') }}/{{ $link->short_url }}
             </a>
         </p>
         <p>
-            <b>Long Link: </b>
+            <b>原地址: </b>
             <a target="_blank" href="{{ $link->long_url }}">{{ $link->long_url }}</a>
         </p>
     </div>
