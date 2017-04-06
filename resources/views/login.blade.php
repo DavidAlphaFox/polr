@@ -13,7 +13,7 @@
             <input type="text" placeholder="用户名" name="username" class="form-control login-field" />
             <input type="password" placeholder="密 码" name="password" class="form-control login-field" />
             <input type="hidden" name='_token' value='{{csrf_token()}}' />
-            <input type="submit" value="Login" class="login-submit btn btn-success" />
+            <input type="submit" value="登 录" class="login-submit btn btn-success" />
 
             <p class='login-prompts'>
             @if (env('POLR_ALLOW_ACCT_CREATION') == true)

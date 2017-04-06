@@ -13,7 +13,7 @@
         密 码：<input type='password' name='password' class='form-control form-field' placeholder='密 码' />
         Email： <input type='email' name='email' class='form-control form-field' placeholder='Email' />
         <input type="hidden" name='_token' value='{{csrf_token()}}' />
-        <input type="submit" class="btn btn-default btn-success" value="Register"/>
+        <input type="submit" class="btn btn-default btn-success" value="注 册"/>
         <p class='login-prompt'>
             <small>已有账号? <a href='{{route('login')}}'>登 录</a></small>
         </p>
