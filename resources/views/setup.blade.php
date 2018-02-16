@@ -23,112 +23,113 @@ Setup
         </div>
 
         <form class='setup-form' method='POST' action='/setup'>
-            <h4>Database Configuration</h4>
+            <h4>数据库设置</h4>
 
-            <p>Database Host:</p>
+            <p>数据库地址:</p>
             <input type='text' class='form-control' name='db:host' value='localhost'>
 
-            <p>Database Port:</p>
+            <p>数据库端口:</p>
             <input type='text' class='form-control' name='db:port' value='3306'>
 
-            <p>Database Username:</p>
+            <p>数据库用户名:</p>
             <input type='text' class='form-control' name='db:username' value='root'>
 
-            <p>Database Password:</p>
+            <p>数据库密码:</p>
             <input type='password' class='form-control' name='db:password' value='password'>
 
             <p>
-                Database Name:
-                <setup-tooltip content="Name of existing database. You must create the Polr database manually."></setup-tooltip>
+                数据库名:
+                <setup-tooltip content="必须是存在的数据库，你需要手动创建"></setup-tooltip>
             </p>
             <input type='text' class='form-control' name='db:name' value='polr'>
 
 
-            <h4>Application Settings</h4>
+            <h4>应用设置</h4>
 
-            <p>Application Name:</p>
+            <p>网站名字:</p>
             <input type='text' class='form-control' name='app:name' value='Polr'>
 
-            <p>Application Protocol:</p>
-            <input type='text' class='form-control' name='app:protocol' value='http://'>
-
-            <p>Application URL (path to Polr; do not include http:// or trailing slash):</p>
+            <p>网站访问方式:</p>
+            <input type='text' class='form-control' name='app:protocol' value='https://'>
+            
+            <p>
+                网站域名:
+                <setup-tooltip content="不要包括 http(s)://，将与上面的访问方式组成一个完整的域名"></setup-tooltip>
+            </p>
             <input type='text' class='form-control' name='app:external_url' value='yoursite.com'>
 
             <p>
-                Advanced Analytics:
-                <button data-content="Enable advanced analytics to collect data such as referers, geolocation, and clicks over time. Enabling advanced analytics reduces performance and increases disk space usage."
+                访问分析:
+                <button data-content="开启后将统计：访问地域，时间等信息，会影响性能"
                     type="button" class="btn btn-xs btn-default setup-qmark" data-toggle="popover">?</button>
             </p>
             <select name='setting:adv_analytics' class='form-control'>
-                <option value='false' selected='selected'>Disable advanced analytics</option>
-                <option value='true'>Enable advanced analytics</option>
+                <option value='false' selected='selected'>关闭</option>
+                <option value='true'>开启</option>
             </select>
 
-            <p>Shortening Permissions:</p>
+            <p>权限:</p>
             <select name='setting:shorten_permission' class='form-control'>
-                <option value='false' selected='selected'>Anyone can shorten URLs</option>
-                <option value='true'>Only logged in users may shorten URLs</option>
+                <option value='false' selected='selected'>所有人都可以缩短 URLs</option>
+                <option value='true'>只有注册用户可以缩短 URLs</option>
             </select>
 
-            <p>Public Interface:</p>
+            <p>公共网站:</p>
             <select name='setting:public_interface' class='form-control'>
-                <option value='true' selected='selected'>Show public interface (default)</option>
-                <option value='false'>Redirect index page to redirect URL</option>
+                <option value='true' selected='selected'>公共可用 (默认)</option>
+                <option value='false'>转移到指定地址</option>
             </select>
 
-            <p>404s and Disabled Short Links:</p>
+            <p>错误信息:</p>
             <select name='setting:redirect_404' class='form-control'>
-                <option value='false' selected='selected'>Show an error message (default)</option>
-                <option value='true'>Redirect to redirect URL</option>
+                <option value='false' selected='selected'>展示错误信息 (默认)</option>
+                <option value='true'>转移到指定地址</option>
             </select>
 
             <p>
-                Redirect URL:
-                <setup-tooltip content="Required if you wish to redirect the index page or 404s to a different website. To use Polr, login by directly heading to yoursite.com/login first."></setup-tooltip>
+                指定地址:
+                <setup-tooltip content="将上述选项转移到该地址"></setup-tooltip>
             </p>
             <input type='text' class='form-control' name='setting:index_redirect' placeholder='http://your-main-site.com'>
             <p class='text-muted'>
-                If a redirect is enabled, you will need to go to
-                http://yoursite.com/login before you can access the index
-                page.
+                若启用请转到 http://yoursite.com/login 登录
             </p>
 
             <p>
-                Default URL Ending Type:
-                <setup-tooltip content="If you choose to use pseudorandom strings, you will not have the option to use a counter-based ending."></setup-tooltip>
+                URL 风格:
+                <setup-tooltip content="如果选择使用伪随机字符串，则不能按顺序排列"></setup-tooltip>
             </p>
             <select name='setting:pseudor_ending' class='form-control'>
-                <option value='false' selected='selected'>Use base62 or base32 counter (shorter but more predictable, e.g 5a)</option>
-                <option value='true'>Use pseudorandom strings (longer but less predictable, e.g 6LxZ3j)</option>
+                <option value='false' selected='selected'>使用 base62 或者 base32  (更短但更可预测, e.g 5a)</option>
+                <option value='true'>使用伪随机字符串 (更长更不可预测, e.g 6LxZ3j)</option>
             </select>
 
             <p>
                 URL Ending Base:
-                <setup-tooltip content="This will have no effect if you choose to use pseudorandom endings."></setup-tooltip>
+                <setup-tooltip content="如果选择使用伪随机结束，这将没有效果。"></setup-tooltip>
             </p>
             <select name='setting:base' class='form-control'>
-                <option value='32' selected='selected'>32 -- lowercase letters & numbers (default)</option>
-                <option value='62'>62 -- lowercase, uppercase letters & numbers</option>
+                <option value='32' selected='selected'>32 -- 小写字母 & 数字 (默认)</option>
+                <option value='62'>62 -- 大/小写字母 & 数字</option>
             </select>
 
             <h4>
-                Admin Account Settings
-                <setup-tooltip content="These credentials will be used for your admin account in Polr."></setup-tooltip>
+                管理员设置
+                <setup-tooltip content="这些设置将作用于管理员"></setup-tooltip>
             </h4>
 
-            <p>Admin Username:</p>
+            <p>用户名:</p>
             <input type='text' class='form-control' name='acct:username' value='polr'>
 
-            <p>Admin Email:</p>
+            <p>Email:</p>
             <input type='text' class='form-control' name='acct:email' value='polr@admin.tld'>
 
-            <p>Admin Password:</p>
+            <p>密码:</p>
             <input type='password' class='form-control' name='acct:password' value='polr'>
 
             <h4>
-                SMTP Settings
-                <setup-tooltip content="Required only if the email verification or password recovery features are enabled."></setup-tooltip>
+                SMTP 设置
+                <setup-tooltip content="若启用邮箱验证与密码找回则是必须的"></setup-tooltip>
             </h4>
 
             <p>SMTP Server:</p>
@@ -148,77 +149,77 @@ Setup
             <p>SMTP From Name:</p>
             <input type='text' class='form-control' name='app:smtp_from_name' placeholder='noreply'>
 
-            <h4>API Settings</h4>
+            <h4>API 设置</h4>
 
-            <p>Anonymous API:</p>
+            <p>公共 API:</p>
             <select name='setting:anon_api' class='form-control'>
-                <option selected value='false'>Off -- only registered users can use API</option>
-                <option value='true'>On -- empty key API requests are allowed</option>
+                <option selected value='false'>关闭 -- 只有注册用户可用</option>
+                <option value='true'>开启 -- 接受空的 key API 要求</option>
             </select>
 
             <p>
-                Anonymous API Quota:
-                <setup-tooltip content="API quota for non-authenticated users per minute per IP."></setup-tooltip>
+                公共 API 限制:
+                <setup-tooltip content="空的 key API 要求的限制（每分钟）"></setup-tooltip>
             </p>
             <input type='text' class='form-control' name='setting:anon_api_quota' placeholder='10'>
 
-            <p>Automatic API Assignment:</p>
+            <p>自动 API 生成:</p>
             <select name='setting:auto_api_key' class='form-control'>
-                <option selected value='false'>Off -- admins must manually enable API for each user</option>
-                <option value='true'>On -- each user receives an API key on signup</option>
+                <option selected value='false'>关闭 -- 管理员必须挨个启用</option>
+                <option value='true'>开启 -- 每个用户在注册时即生成</option>
             </select>
 
-            <h4>Other Settings</h4>
+            <h4>其他</h4>
 
             <p>
-                Registration:
-                <setup-tooltip content="Enabling registration allows any user to create an account."></setup-tooltip>
+                注册:
+                <setup-tooltip content="选择注册方式"></setup-tooltip>
             </p>
             <select name='setting:registration_permission' class='form-control'>
-                <option value='none'>Registration disabled</option>
-                <option value='email'>Enabled, email verification required</option>
-                <option value='no-verification'>Enabled, no email verification required</option>
+                <option value='none'>关闭注册</option>
+                <option value='email'>开启，邮箱验证</option>
+                <option value='no-verification'>开启，没有邮箱验证</option>
             </select>
 
             <p>
-                Restrict Registration Email Domains:
-                <setup-tooltip content="Restrict registration to certain email domains."></setup-tooltip>
+                限制注册电子邮件域域名:
+                <setup-tooltip content="限制注册到某些电子邮件域名。"></setup-tooltip>
             </p>
             <select name='setting:restrict_email_domain' class='form-control'>
-                <option value='false'>Allow any email domain to register</option>
-                <option value='true'>Restrict email domains allowed to register</option>
+                <option value='false'>允许任何电子邮件域名注册</option>
+                <option value='true'>只允许下面的电子邮箱注册</option>
             </select>
 
             <p>
-                Permitted Email Domains:
-                <setup-tooltip content="A comma-separated list of emails permitted to register."></setup-tooltip>
+                允许的电子邮件域名:
+                <setup-tooltip content="请用英文逗号分隔"></setup-tooltip>
             </p>
-            <input type='text' class='form-control' name='setting:allowed_email_domains' placeholder='company.com,company-corp.com'>
+            <input type='text' class='form-control' name='setting:allowed_email_domains' placeholder='hotmail.com,gmail.com'>
 
             <p>
-                Password Recovery:
-                <setup-tooltip content="Password recovery allows users to reset their password through email."></setup-tooltip>
+                找回密码:
+                <setup-tooltip content="找回密码 allows users to reset their password through email."></setup-tooltip>
             </p>
             <select name='setting:password_recovery' class='form-control'>
-                <option value='false'>Password recovery disabled</option>
-                <option value='true'>Password recovery enabled</option>
+                <option value='false'>关闭找回密码</option>
+                <option value='true'>开启找回密码</option>
             </select>
             <p class='text-muted'>
-                Please ensure SMTP is properly set up before enabling password recovery.
+                请设置 SMTP 再开启找回密码.
             </p>
 
             <p>
-                Require reCAPTCHA for Registrations
-                <setup-tooltip content="You must provide your reCAPTCHA keys to use this feature."></setup-tooltip>
+                注册时开启 reCAPTCHA 验证码(中国可用)
+                <setup-tooltip content="您必须提供您的reCAPTCHA密钥才能使用此功能。"></setup-tooltip>
             </p>
             <select name='setting:acct_registration_recaptcha' class='form-control'>
-                <option value='false'>Do not require reCAPTCHA for registration</option>
-                <option value='true'>Require reCATPCHA for registration</option>
+                <option value='false'>关闭</option>
+                <option value='true'>开启</option>
             </select>
 
             <p>
-                reCAPTCHA Configuration:
-                <setup-tooltip content="You must provide reCAPTCHA keys if you intend to use any reCAPTCHA-dependent features."></setup-tooltip>
+                reCAPTCHA 设置:
+                <setup-tooltip content="如果您打算使用任何与reCAPTCHA相关的功能，则必须提供reCAPTCHA密钥。"></setup-tooltip>
             </p>
 
             <p>
@@ -232,30 +233,33 @@ Setup
             <input type='text' class='form-control' name='setting:recaptcha_secret_key'>
 
             <p class='text-muted'>
-                You can obtain reCAPTCHA keys from <a href="https://www.google.com/recaptcha/admin">Google's reCAPTCHA website</a>.
+                你可以访问 <a href="https://www.google.com/recaptcha/admin">Google's reCAPTCHA website</a>去获取 KEY (请搭梯子)。
             </p>
 
-            <p>Theme (<a href='https://github.com/cydrobolt/polr/wiki/Themes-Screenshots'>screenshots</a>):</p>
+            <p>预览(<a href='https://github.com/cydrobolt/polr/wiki/Themes-Screenshots'>截屏</a>):</p>
             <select name='app:stylesheet' class='form-control'>
                 <option value=''>Modern (default)</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css'>Midnight Black</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css'>Orange</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css'>Crisp White</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css'>Cloudy Night</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css'>Calm Skies</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css'>Google Material Design</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css'>Blue Metro</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css'>Sandstone</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css'>Newspaper</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/solar/bootstrap.min.css'>Solar</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css'>Cosmo</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css'>Flatly</option>
-                <option value='//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css'>Yeti</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/cyborg/bootstrap.min.css'>Midnight Black</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/united/bootstrap.min.css'>Orange</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/simplex/bootstrap.min.css'>Crisp White</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/darkly/bootstrap.min.css'>Cloudy Night</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/cerulean/bootstrap.min.css'>Calm Skies</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/paper/bootstrap.min.css'>Google Material Design</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/superhero/bootstrap.min.css'>Blue Metro</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/sandstone/bootstrap.min.css'>Sandstone</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/lumen/bootstrap.min.css'>Newspaper</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/solar/bootstrap.min.css'>Solar</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/cosmo/bootstrap.min.css'>Cosmo</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/flatly/bootstrap.min.css'>Flatly</option>
+                <option value='//cdn.bootcss.com/bootswatch/3.3.7/yeti/bootstrap.min.css'>Yeti</option>
             </select>
+            <p>
+                请在仔细检查后点击安装
+            </p>
 
             <div class='setup-form-buttons'>
-                <input type='submit' class='btn btn-success' value='Install'>
-                <input type='reset' class='btn btn-warning' value='Clear Fields'>
+                <input type='submit' class='btn btn-success' value='安装'>
+                <input type='reset' class='btn btn-warning' value='清除字段'>
             </div>
             <input type="hidden" name='_token' value='{{csrf_token()}}' />
         </form>
@@ -271,12 +275,12 @@ Setup
 
     <div>
         Polr Version {{env('VERSION')}} released {{env('VERSION_RELMONTH')}} {{env('VERSION_RELDAY')}}, {{env('VERSION_RELYEAR')}} -
-        <a href='//github.com/cydrobolt/polr' target='_blank'>Github</a>
+        <a href='https://github.com/skywalker512/polr' target='_blank'>Github</a>
 
         <div class='footer-well'>
             &copy; Copyright {{env('VERSION_RELYEAR')}}
             <a class='footer-link' href='//cydrobolt.com' target='_blank'>Chaoyi Zha</a> &amp;
-            <a class='footer-link' href='//github.com/Cydrobolt/polr/graphs/contributors' target='_blank'>other Polr contributors</a>
+            <a class='footer-link' href='https://github.com/skywalker512/polr' target='_blank'>skywalker512</a>
         </div>
     </div>
 </div>

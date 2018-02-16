@@ -44,6 +44,6 @@
 
 @section('js')
     @if (env('POLR_ACCT_CREATION_RECAPTCHA'))
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.recaptcha.net/recaptcha/api.js" async defer></script>
     @endif
 @endsection

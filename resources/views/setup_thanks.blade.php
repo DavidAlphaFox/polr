@@ -21,16 +21,12 @@ Setup Completed
         <div class='setup-center'>
             <img class='setup-logo' src='/img/logo.png'>
         </div>
-        <h2>Setup Complete</h2>
-        <p>Your Polr setup is complete. To continue, you may <a href='{{route('login')}}'>login</a> or
-            access your <a href='{{route('index')}}'>home page</a>.
+        <h2>安装完成</h2>
+        <p>你可以 <a href='{{route('login')}}'>登录</a> 或者
+            访问 <a href='{{route('index')}}'>首页</a>.
         </p>
-        <p>Consider taking a look at the <a href='http://docs.polr.me/'>docs</a> or <a href='//github.com/cydrobolt/polr'>README</a>
-            for assistance.
-        </p>
-        <p>You may also join us on IRC at <a href='//webchat.freenode.net/?channels=#polr'><code>#polr</code></a> on freenode for assistance or questions.</p>
-
-        <p>Thanks for using Polr!</p>
+        <p>你可以访问 <a href='https://forum.flarumchina.org/t/polr'><code>中文论坛</code></a>寻求帮助。</p>
+        <p>感谢你使用 Polr!</p>
     </div>
 
     <div class='col-md-3'></div>
