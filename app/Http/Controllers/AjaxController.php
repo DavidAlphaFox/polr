@@ -37,7 +37,7 @@ class AjaxController extends Controller {
         $user = UserHelper::getUserById($user_id);
 
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, '用户不存在');
         }
         $current_status = $user->api_active;
 
@@ -71,7 +71,7 @@ class AjaxController extends Controller {
         $user_requesting = UserHelper::getUserByUsername($username_user_requesting);
 
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, '用户不存在');
         }
 
         if ($user != $user_requesting) {
@@ -110,7 +110,7 @@ class AjaxController extends Controller {
         $user = UserHelper::getUserById($user_id);
 
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, '用户不存在');
         }
         $user->api_quota = $new_quota;
         $user->save();
@@ -124,7 +124,7 @@ class AjaxController extends Controller {
         $user = UserHelper::getUserById($user_id, true);
 
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, '用户不存在');
         }
         $current_status = $user->active;
 
@@ -149,7 +149,7 @@ class AjaxController extends Controller {
         $user = UserHelper::getUserById($user_id, true);
 
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, '用户不存在');
         }
 
         $user->role = $role;
@@ -179,7 +179,7 @@ class AjaxController extends Controller {
         $user = UserHelper::getUserById($user_id, true);
 
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, '用户不存在');
         }
 
         $user->delete();
@@ -193,7 +193,7 @@ class AjaxController extends Controller {
         $link = LinkHelper::linkExists($link_ending);
 
         if (!$link) {
-            abort(404, 'Link not found.');
+            abort(404, '链接不存在');
         }
 
         $link->delete();
@@ -207,7 +207,7 @@ class AjaxController extends Controller {
         $link = LinkHelper::linkExists($link_ending);
 
         if (!$link) {
-            abort(404, 'Link not found.');
+            abort(404, '链接不存在');
         }
 
         $current_status = $link->is_disabled;
@@ -223,7 +223,7 @@ class AjaxController extends Controller {
 
         $link->save();
 
-        return ($new_status ? "Enable" : "Disable");
+        return ($new_status ? "启用" : "禁用");
     }
 
     public function editLinkLongUrl(Request $request) {

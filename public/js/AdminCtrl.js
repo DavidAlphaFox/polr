@@ -257,11 +257,11 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
             'user_email': $scope.newUserParams.userEmail,
             'user_role': $scope.newUserParams.userRole,
         }, function(result) {
-            toastr.success("User " + $scope.newUserParams.username + " successfully created.", "Success");
+            toastr.success("User " + $scope.newUserParams.username + "已成功创建！", "Success");
             $('#new-user-form').clearForm();
             $scope.datatables['admin_users_table'].ajax.reload();
         }, function () {
-            toastr.error("An error occured while creating the user.", "Error");
+            toastr.error("失败！请重试！", "Error");
         });
     }
 
@@ -272,7 +272,7 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
         apiCall('admin/delete_user', {
             'user_id': user_id,
         }, function(new_status) {
-            toastr.success('User successfully deleted.', 'Success');
+            toastr.success('用户已删除。', 'Success');
             $scope.reloadUserTables();
         });
     };
@@ -282,7 +282,7 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
             'user_id': user_id,
             'role': role,
         }, function(result) {
-            toastr.success("User role successfully changed.", "Success");
+            toastr.success("成功修改权限组。", "Success");
         });
     };
 
@@ -313,7 +313,7 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
         apiCall('admin/delete_link', {
             'link_ending': link_ending,
         }, function(new_status) {
-            toastr.success('Link successfully deleted.', 'Success');
+            toastr.success('链接已删除', 'Success');
             $scope.reloadLinkTables();
         });
     };
@@ -326,8 +326,8 @@ polr.controller('AdminCtrl', function($scope, $compile, $timeout) {
         apiCall('admin/toggle_link', {
             'link_ending': link_ending,
         }, function(next_action) {
-            toastr.success(curr_action + " was successful.", "Success");
-            if (next_action == 'Disable') {
+            toastr.success(curr_action + " 成功", "Success");
+            if (next_action == '禁用') {
                 el.removeClass('btn-success');
                 el.addClass('btn-danger');
             } else {

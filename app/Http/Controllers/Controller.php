@@ -38,14 +38,14 @@ class Controller extends BaseController {
 
     protected static function ensureAdmin() {
         if (!self::currIsAdmin()) {
-            abort(401, 'User not admin.');
+            abort(401, '权限不足');
         }
         return true;
     }
 
     protected static function ensureLoggedIn() {
         if (!self::isLoggedIn()) {
-            abort (401, 'User must be authenticated.');
+            abort (401, '用户必须认证');
         }
         return true;
     }

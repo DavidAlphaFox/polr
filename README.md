@@ -1,4 +1,4 @@
-# [![Logo](http://i.imgur.com/aOtrJNz.png)](https://project.polr.me)
+# [![Logo](http://i.imgur.com/aOtrJNz.png)](https://tk.ci) https://tk.ci
 
 :aerial_tramway: A modern, minimalist, and lightweight URL shortener.
 

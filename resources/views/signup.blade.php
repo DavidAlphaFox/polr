@@ -6,33 +6,33 @@
 
 @section('content')
 <div class='col-md-6'>
-    <h2 class='title'>Register</h2>
+    <h2 class='title'>注 册</h2>
 
     <form action='{{route('psignup')}}' method='POST'>
-        Username: <input type='text' name='username' class='form-control form-field' placeholder='Username' />
-        Password: <input type='password' name='password' class='form-control form-field' placeholder='Password' />
-        Email: <input type='email' name='email' class='form-control form-field' placeholder='Email' />
+        用户名：<input type='text' name='username' class='form-control form-field' placeholder='用户名' />
+        密 码：<input type='password' name='password' class='form-control form-field' placeholder='密 码' />
+        Email： <input type='email' name='email' class='form-control form-field' placeholder='Email' />
         <input type="hidden" name='_token' value='{{csrf_token()}}' />
-        <input type="submit" class="btn btn-default btn-success" value="Register"/>
+        <input type="submit" class="btn btn-default btn-success" value="注 册"/>
         <p class='login-prompt'>
-            <small>Already have an account? <a href='{{route('login')}}'>Login</a></small>
+            <small>已有账号? <a href='{{route('login')}}'>登 录</a></small>
         </p>
     </form>
 </div>
 <div class='col-md-6 hidden-xs hidden-sm'>
     <div class='right-col-one'>
-        <h4>Username</h4>
-        <p>The username you will use to login to {{env('APP_NAME')}}.</p>
+        <h4>用户名</h4>
+        <p>登录 {{env('APP_NAME')}} 的用户名。</p>
     </p>
     <div class='right-col-next'>
         <div class='right-col'>
-            <h4>Password</h4>
-            <p>The secure password you will use to login to {{env('APP_NAME')}}.</p>
+            <h4>密 码</h4>
+            <p>登录 {{env('APP_NAME')}} 的密码。</p>
         </p>
     </div>
     <div class='right-col-next'>
         <h4>Email</h4>
-        <p>The email you will use to verify your account or to recover your account.</p>
+        <p>安全邮箱！用于激活账号或者重置密码。</p>
     </p>
 
 </div>

@@ -44,15 +44,13 @@ class LinkFactory {
         if (strlen($long_url) > self::MAXIMUM_LINK_LENGTH) {
             // If $long_url is longer than the maximum length, then
             // throw an Exception
-            throw new \Exception('Sorry, but your link is longer than the
-                maximum length allowed.');
+            throw new \Exception('长度超出限制。');
         }
 
         $is_already_short = LinkHelper::checkIfAlreadyShortened($long_url);
 
         if ($is_already_short) {
-            throw new \Exception('Sorry, but your link already
-                looks like a shortened URL.');
+            throw new \Exception('这个链接已经是短链接了。');
         }
 
         if (!$is_secret && (!isset($custom_ending) || $custom_ending === '') && (LinkHelper::longLinkExists($long_url, $creator) !== false)) {
@@ -66,13 +64,12 @@ class LinkFactory {
             // has custom ending
             $ending_conforms = LinkHelper::validateEnding($custom_ending);
             if (!$ending_conforms) {
-                throw new \Exception('Sorry, but custom endings
-                    can only contain alphanumeric characters, hyphens, and underscores.');
+                throw new \Exception('只能使用数字和大小写字母。');
             }
 
             $ending_in_use = LinkHelper::linkExists($custom_ending);
             if ($ending_in_use) {
-                throw new \Exception('Sorry, but this URL ending is already in use.');
+                throw new \Exception('这个短链接已使用。');
             }
 
             $link_ending = $custom_ending;

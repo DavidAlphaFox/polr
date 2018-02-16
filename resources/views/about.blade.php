@@ -13,20 +13,19 @@
 <div class='about-contents'>
     @if ($role == "admin")
     <dl>
-        <p>Build Information</p>
-        <dt>Version: {{env('POLR_VERSION')}}</dt>
-        <dt>Release date: {{env('POLR_RELDATE')}}</dt>
-        <dt>App Install: {{env('APP_NAME')}} on {{env('APP_ADDRESS')}} on {{env('POLR_GENERATED_AT')}}<dt>
+        <p>网站信息</p>
+        <dt>版本： {{env('POLR_VERSION')}}</dt>
+        <dt>创建时间： {{env('POLR_RELDATE')}}</dt>
+        <dt>安装时间： {{env('APP_NAME')}} on {{env('APP_ADDRESS')}} on {{env('POLR_GENERATED_AT')}}<dt>
     </dl>
-    <p>You are seeing the information above because you are logged in as an administrator.</p>
     @endif
 
-    <p>{{env('APP_NAME')}} is powered by Polr 2, an open source, minimalist link shortening platform.
-        Learn more at <a href='https://github.com/Cydrobolt/polr'>its Github page</a> or its <a href="//project.polr.me">project site</a>.
-        <br />Polr is licensed under the GNU GPL License.
+    <p>{{env('APP_NAME')}} 由 Polr 2 驱动， Polr 2 是一个极简的短地址压缩开源程序。</p>
+    <p>更多信息请点击项目主页：<a href='https://github.com/Cydrobolt/polr' target="_blank">Github page</a> 或者： <a href="//project.polr.me" target="_blank">作者主页</a>.
+        <br />Polr 遵循 GNU GPL License 协议。
     </p>
 </div>
-<a href='#' class='btn btn-success license-btn'>More Information</a>
+<a href='#' class='btn btn-success license-btn'>更多信息</a>
 <pre class="license" id="gpl-license">
 Copyright (C) 2013-2017 Chaoyi Zha
 

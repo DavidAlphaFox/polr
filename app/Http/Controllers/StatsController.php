@@ -37,7 +37,7 @@ class StatsController extends Controller {
         }
 
         if (!$this->isLoggedIn()) {
-            return redirect(route('login'))->with('error', 'Please login to view link stats.');
+            return redirect(route('login'))->with('error', '请登录查看统计信息。');
         }
 
         $link = Link::where('short_url', $short_url)
@@ -45,16 +45,16 @@ class StatsController extends Controller {
 
         // Return 404 if link not found
         if ($link == null) {
-            return redirect(route('admin'))->with('error', 'Cannot show stats for nonexistent link.');
+            return redirect(route('admin'))->with('error', '链接不存在。');
         }
         if (!env('SETTING_ADV_ANALYTICS')) {
-            return redirect(route('login'))->with('error', 'Please enable advanced analytics to view this page.');
+            return redirect(route('login'))->with('error', '功能未开启。');
         }
 
         $link_id = $link->id;
 
         if ( (session('username') != $link->creator) && !self::currIsAdmin() ) {
-            return redirect(route('admin'))->with('error', 'You do not have permission to view stats for this link.');
+            return redirect(route('admin'))->with('error', '无权查看。');
         }
 
         try {
