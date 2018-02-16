@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-<h1 class='title'>tk = 淘客</h1>
-<br /><br /><br />
+<h1 class='title'>{{env('APP_NAME')}}</h1>
 <form method='POST' action='/shorten' role='form'>
     <input type='url' autocomplete='off'
         class='form-control long-link-input' placeholder='http://' name='link-url' />
@@ -41,10 +40,8 @@
     <a href='#' class='btn btn-warning' id='show-link-options'>自定义</a>
     <input type="hidden" name='_token' value='{{csrf_token()}}' />
 </form>
-<br /><br /><br />
-<div class='text-muted tips'>
-    <i class='fa fa-check-circle'></i> &nbsp;&nbsp;<a href="http://www.kubaicai.com/" target="_blank">酷白菜</a> 淘宝客 短链接地址压缩服务<br />
-	&copy;<?php echo date("Y"); ?> <a href="https://tk.ci/">tk.ci</a>
+<div id='tips' class='text-muted tips'>
+    <i class='fa fa-spinner'></i> Loading Tips...
 </div>
 
 @endsection
