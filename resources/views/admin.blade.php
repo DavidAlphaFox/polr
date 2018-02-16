@@ -9,24 +9,24 @@
 <div ng-controller="AdminCtrl" class="ng-root">
     <div class='col-md-2'>
         <ul class='nav nav-pills nav-stacked admin-nav' role='tablist'>
-            <li role='presentation' aria-controls="home" class='admin-nav-item active'><a href='#home'>Home</a></li>
-            <li role='presentation' aria-controls="links" class='admin-nav-item'><a href='#links'>Links</a></li>
-            <li role='presentation' aria-controls="settings" class='admin-nav-item'><a href='#settings'>Settings</a></li>
+            <li role='presentation' aria-controls="home" class='admin-nav-item active'><a href='#home'>后台首页</a></li>
+            <li role='presentation' aria-controls="links" class='admin-nav-item'><a href='#links'>短链接</a></li>
+            <li role='presentation' aria-controls="settings" class='admin-nav-item'><a href='#settings'>设 置</a></li>
 
             @if ($role == $admin_role)
-            <li role='presentation' class='admin-nav-item'><a href='#admin'>Admin</a></li>
+            <li role='presentation' class='admin-nav-item'><a href='#admin'>管理员</a></li>
             @endif
 
             @if ($api_active == 1)
-            <li role='presentation' class='admin-nav-item'><a href='#developer'>Developer</a></li>
+            <li role='presentation' class='admin-nav-item'><a href='#developer'>开发者</a></li>
             @endif
         </ul>
     </div>
     <div class='col-md-10'>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
-                <h2>Welcome to your {{env('APP_NAME')}} dashboard!</h2>
-                <p>Use the links on the left hand side to navigate your {{env('APP_NAME')}} dashboard.</p>
+                <h2>欢迎光临！</h2>
+                <p>这里是后台首页，左边有导航，右上角是用户中心。</p>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="links">
@@ -36,10 +36,10 @@
             </div>
 
             <div role="tabpanel" class="tab-pane" id="settings">
-                <h3>Change Password</h3>
+                <h3>修改密码</h3>
                 <form action='/admin/action/change_password' method='POST'>
-                    Old Password: <input class="form-control password-box" type='password' name='current_password' />
-                    New Password: <input class="form-control password-box" type='password' name='new_password' />
+                    老密码：<input class="form-control password-box" type='password' name='current_password' />
+                    新密码：<input class="form-control password-box" type='password' name='new_password' />
                     <input type="hidden" name='_token' value='{{csrf_token()}}' />
                     <input type='submit' class='btn btn-success change-password-btn'/>
                 </form>
@@ -47,21 +47,21 @@
 
             @if ($role == $admin_role)
             <div role="tabpanel" class="tab-pane" id="admin">
-                <h3>Links</h3>
+                <h3>链接</h3>
                 @include('snippets.link_table', [
                     'table_id' => 'admin_links_table'
                 ])
 
-                <h3 class="users-heading">Users</h3>
-                <a ng-click="state.showNewUserWell = !state.showNewUserWell" class="btn btn-primary btn-sm status-display">New</a>
+                <h3 class="users-heading">用 户</h3>
+                <a ng-click="state.showNewUserWell = !state.showNewUserWell" class="btn btn-primary btn-sm status-display">添加用户</a>
 
                 <div ng-if="state.showNewUserWell" class="new-user-fields well">
                     <table class="table">
                         <tr>
-                            <th>Username</th>
-                            <th>Password</th>
+                            <th>用户名</th>
+                            <th>密 码</th>
                             <th>Email</th>
-                            <th>Role</th>
+                            <th>权限组</th>
                             <th></th>
                         </tr>
                         <tr id="new-user-form">
@@ -76,7 +76,7 @@
                                 </select>
                             </td>
                             <td>
-                                <a ng-click="addNewUser($event)" class="btn btn-primary btn-sm status-display new-user-add">Add</a>
+                                <a ng-click="addNewUser($event)" class="btn btn-primary btn-sm status-display new-user-add">添加</a>
                             </td>
                         </tr>
                     </table>
@@ -91,7 +91,7 @@
 
             @if ($api_active == 1)
             <div role="tabpanel" class="tab-pane" id="developer">
-                <h3>Developer</h3>
+                <h3>开发者</h3>
 
                 <p>API keys and documentation for developers.</p>
                 <p>

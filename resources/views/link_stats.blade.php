@@ -10,22 +10,21 @@
 @section('content')
 <div ng-controller="StatsCtrl" class="ng-root">
     <div class="stats-header bottom-padding">
-        <h3>Stats</h3>
+        <h3>状态</h3>
         <div class="row">
             <div class="col-md-3 col-md-offset-3 link-meta">
                 <p>
-                    <b>Short Link: </b>
+                    <b>短链接: </b>
                     <a target="_blank" href="{{ env('APP_PROTOCOL') }}/{{ env('APP_ADDRESS') }}/{{ $link->short_url }}">
                         {{ env('APP_ADDRESS') }}/{{ $link->short_url }}
                     </a>
                 </p>
                 <p>
-                    <b>Long Link: </b>
+                    <b>原地址: </b>
                     <a target="_blank" href="{{ $link->long_url }}">{{ str_limit($link->long_url, 50) }}</a>
                 </p>
                 {{-- <p>
-                    <em>Tip: Clear the right date bound (bottom box) to set it to the current date and time. New
-                    clicks will not show unless the right date bound is set to the current time.</em>
+                    <em>提示：清除正确的日期界限（底部框）以将其设置为当前日期和时间。 除非将正确的日期界限设置为当前时间，否则不会显示新的点击。</em>
                 </p> --}}
             </div>
             <div class="col-md-3">

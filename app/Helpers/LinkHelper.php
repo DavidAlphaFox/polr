@@ -11,7 +11,7 @@ class LinkHelper {
          * @return boolean
          */
         $shortener_domains = [
-            'polr.me',
+			'polr.me',
             'bit.ly',
             'is.gd',
             'tiny.cc',
@@ -21,6 +21,8 @@ class LinkHelper {
             'ow.ly',
             'j.mp',
             't.co',
+            't.cn',
+            'u.nu'
             env('APP_ADDRESS')
         ];
 
